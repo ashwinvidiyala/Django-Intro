@@ -17,8 +17,6 @@ def add(request):
 
         return render(request, 'session_words/index.html')
 
-        return session_words(request)
-
 def delete(request):
     if request.method == 'POST':
         try:
