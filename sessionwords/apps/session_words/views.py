@@ -6,6 +6,7 @@ def session_words(request):
     return render(request, 'session_words/index.html')
 
 def add(request):
+    form_info = []
     if request.method == 'POST':
         request.session['word'] = request.POST['word']
         request.session['color'] = request.POST['color']
@@ -15,7 +16,8 @@ def add(request):
         request.session['time'] = strftime("%H-%M %P, %m-%d-%Y", gmtime())
 
         return render(request, 'session_words/index.html')
-        # return session_words(request)
+
+        return session_words(request)
 
 def delete(request):
     if request.method == 'POST':
