@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Session Words</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'session_words/index.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <h1>Add a new word</h1>
+    <form action="/session_words/add" method="post">
+        {% csrf_token %}
+    <input type="text" name="word">
+    <br>
+    Choose color:
+    <br>
+    <input type="radio" name="color" value="red" checked>Red<br>
+    <input type="radio" name="color" value="green">Green<br>
+    <input type="radio" name="color" value="blue">Blue<br>
+    <input type="checkbox" name='big_font' value="big_font"> Show in BIG fonts!
+    <input type="submit" value="Add To Session">
+    </form>
+    <h1>Printed Words</h1>
+    <p class='{{request.session.color}} {{request.session.big_font}}'>{{request.session.word}}</p>
+    <p>Added on {{request.session.time}}</p>
+    <form action="/session_words/delete" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Clear Session">
+    </form>
+  </body>
+</html>
